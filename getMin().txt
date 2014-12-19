@@ -1,0 +1,57 @@
+import java.util.Stack;
+
+public class StackMin 
+{
+	public static void main(String[] args) 
+	{
+		GetMin minStack=new GetMin();
+		minStack.push(4);
+		minStack.push(3);
+		minStack.push(1);
+		System.out.println("Minimum Value before poping :" +minStack.getMin());
+		minStack.pop();
+		minStack.push(2);
+		System.out.println("Minimum Value after poping the first element:" +minStack.getMin());
+	}
+	static class GetMin
+	{
+		
+		Stack<Integer> intStack;
+		Stack<Integer> minStack;
+		
+		public GetMin()
+		{
+			intStack=new Stack<Integer>();
+			minStack=new Stack<Integer>();
+		}
+		public int push(int d)
+		{
+			intStack.push(d);
+			if(minStack.empty()|| d<minStack.peek())
+			{
+				minStack.push(d);
+			}
+			return d;
+		}
+		public int pop()
+		{
+			int result=intStack.pop();
+			if (result==minStack.peek()) {
+				minStack.pop();
+			}
+			return result;
+		}
+		public int getMin()
+		{
+			return minStack.peek();
+		}
+	}
+}
+
+==========================================================================================
+OUTPUT:
+
+Minimum Value before poping :1
+Minimum Value after poping the first element:2
+==========================================================================================
+Time taken: approximately 1 hour
